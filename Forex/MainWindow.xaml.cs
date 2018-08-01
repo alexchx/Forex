@@ -152,6 +152,7 @@ namespace Forex
 
         private async void Home_Loaded(object sender, RoutedEventArgs e)
         {
+            // fetch data for the latest 100 days initially
             await FetchDataAsync(100);
             await Scheduler.Current.RunNowAsync();
             (FindResource("RotateStoryboard") as Storyboard).Begin();
