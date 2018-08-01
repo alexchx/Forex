@@ -6,12 +6,12 @@ using System.Reflection;
 
 namespace Forex.Models
 {
-    internal class ExRateDbContext : DbContext
+    internal class ForexDbContext : DbContext
     {
         public DbSet<RateItem> RateItems { get; set; }
         public DbSet<RateSummary> RateSummaries { get; set; }
 
-        private ExRateDbContext()
+        private ForexDbContext()
             : base(new SQLiteConnection
             {
                 ConnectionString = new SQLiteConnectionStringBuilder
@@ -25,9 +25,9 @@ namespace Forex.Models
             //Database.SetInitializer(new CreateDatabaseIfNotExists<CashierDbContext>());
         }
 
-        public static ExRateDbContext GetInstance()
+        public static ForexDbContext GetInstance()
         {
-            var context = new ExRateDbContext();
+            var context = new ForexDbContext();
 
             context.EnsureDatabase();
 

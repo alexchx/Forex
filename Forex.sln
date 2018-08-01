@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Forex", "Forex\Forex.csproj", "{5E2A3363-BFA8-4404-BBA1-9265F23649B7}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{24EE7560-16D8-4458-B39F-7E4C89062CFB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,8 @@ Global
 		{5E2A3363-BFA8-4404-BBA1-9265F23649B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E2A3363-BFA8-4404-BBA1-9265F23649B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E2A3363-BFA8-4404-BBA1-9265F23649B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24EE7560-16D8-4458-B39F-7E4C89062CFB}.Debug|Any CPU.ActiveCfg = Debug
+		{24EE7560-16D8-4458-B39F-7E4C89062CFB}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

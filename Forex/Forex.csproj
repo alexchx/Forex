@@ -96,7 +96,7 @@
     <Compile Include="Common\NotifyPropertyChanged.cs" />
     <Compile Include="Common\ValueConverter.cs" />
     <Compile Include="Common\VisualTree.cs" />
-    <Compile Include="Models\ExRateDbContext.cs" />
+    <Compile Include="Models\ForexDbContext.cs" />
     <Compile Include="Models\RateSummary.cs" />
     <Compile Include="Models\RateItem.cs" />
     <Compile Include="Services\DataService.cs" />

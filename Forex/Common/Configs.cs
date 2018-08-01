@@ -10,7 +10,7 @@ namespace Forex
 #if DEBUG
         public static readonly string DATA_ROOT = Environment.CurrentDirectory;
 # else
-        public static readonly string DATA_ROOT = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "ExRate");
+        public static readonly string DATA_ROOT = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Forex");
 #endif
     }
 }

@@ -56,9 +56,6 @@ namespace Forex
         {
             Scheduler.Current.Stop();
 
-            // TODO: can login out successfully??
-            //DataService.LogoutAsync().Wait();
-
             DbService.Cleanup();
         }
     }

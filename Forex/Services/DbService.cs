@@ -10,11 +10,11 @@ namespace Forex.Services
 {
     public static class DbService
     {
-        private static ExRateDbContext DbContext { get; set; }
+        private static ForexDbContext DbContext { get; set; }
 
         public static void Initialize()
         {
-            DbContext = ExRateDbContext.GetInstance();
+            DbContext = ForexDbContext.GetInstance();
         }
 
         public async static Task<DateTime?> GetNewestTimeAsync()
