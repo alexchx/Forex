@@ -4,7 +4,7 @@
         xmlns:svc="clr-namespace:Forex.Services"
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         WindowStartupLocation="CenterScreen"
-        Title="Forex"
+        Title="FOREX"
         Width="800"
         Height="600">
 
