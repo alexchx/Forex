@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using WinForms = System.Windows.Forms;
 
 namespace Forex
 {
@@ -108,6 +109,8 @@ namespace Forex
         public List<string> Labels { get; set; }
         public Func<double, string> YFormatter { get; set; }
 
+        private WinForms.NotifyIcon _notifier = new WinForms.NotifyIcon { Visible = true, Icon = new System.Drawing.Icon(@"E:\Git\Forex\Forex\Assets\logo.ico") };
+
         public MainWindow()
         {
             InitializeComponent();
@@ -116,6 +119,15 @@ namespace Forex
             PreviewMouseLeftButtonUp += MainWindow_PreviewMouseLeftButtonUp;
             DetailsViewTrigger.MouseLeftButtonUp += DetailsViewTrigger_MouseLeftButtonUp;
             Scheduler.Current.SyncUpdated += Current_SyncUpdated;
+
+            // System tray
+            Closing += MainWindow_Closing;
+            var menu = new WinForms.ContextMenuStrip();
+            menu.Items.Add("Open", null, (sender, args) => Show());
+            menu.Items.Add("Quit", null, (sender, args) => Application.Current.Shutdown());
+            _notifier.ContextMenuStrip = menu;
+            _notifier.MouseMove += _notifier_MouseMove;
+            _notifier.MouseDown += _notifier_MouseDown;
 
             Series = new SeriesCollection
             {
@@ -270,5 +282,33 @@ namespace Forex
         {
             IsDetailsViewVisible = !IsDetailsViewVisible;
         }
+
+        #region System Tray
+
+        private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Hide();
+
+            e.Cancel = true;
+        }
+
+        private void _notifier_MouseMove(object sender, WinForms.MouseEventArgs e)
+        {
+            _notifier.Text = $"USD/CNY Rate: {LatestRate}\r\nUpdated By: {LastUpdatedBy?.ToString("yyyy-MM-dd HH:mm:ss")}";
+        }
+
+        private void _notifier_MouseDown(object sender, WinForms.MouseEventArgs e)
+        {
+            switch (e.Button)
+            {
+                case WinForms.MouseButtons.Left:
+                    Show();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        #endregion
     }
 }
