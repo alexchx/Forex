@@ -1,5 +1,4 @@
-﻿using System;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Data.SQLite;
 using System.IO;
 using System.Reflection;
@@ -21,8 +20,7 @@ namespace Forex.Models
                 }.ConnectionString
             }, true)
         {
-            // Turn off the Migrations, (NOT a code first Db)
-            //Database.SetInitializer(new CreateDatabaseIfNotExists<CashierDbContext>());
+
         }
 
         public static ForexDbContext GetInstance()
@@ -32,14 +30,6 @@ namespace Forex.Models
             context.EnsureDatabase();
 
             return context;
-        }
-
-        protected override void OnModelCreating(DbModelBuilder builder)
-        {
-            base.OnModelCreating(builder);
-
-            // Database does not pluralize table names
-            //modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
 
         private void EnsureDatabase()
