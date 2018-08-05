@@ -5,7 +5,9 @@ using LiveCharts;
 using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
@@ -109,7 +111,7 @@ namespace Forex
         public List<string> Labels { get; set; }
         public Func<double, string> YFormatter { get; set; }
 
-        private WinForms.NotifyIcon _notifier = new WinForms.NotifyIcon { Visible = true, Icon = new System.Drawing.Icon(@"E:\Git\Forex\Forex\Assets\logo.ico") };
+        private WinForms.NotifyIcon _notifier;
 
         public MainWindow()
         {
@@ -119,15 +121,6 @@ namespace Forex
             PreviewMouseLeftButtonUp += MainWindow_PreviewMouseLeftButtonUp;
             DetailsViewTrigger.MouseLeftButtonUp += DetailsViewTrigger_MouseLeftButtonUp;
             Scheduler.Current.SyncUpdated += Current_SyncUpdated;
-
-            // System tray
-            Closing += MainWindow_Closing;
-            var menu = new WinForms.ContextMenuStrip();
-            menu.Items.Add("Open", null, (sender, args) => Show());
-            menu.Items.Add("Quit", null, (sender, args) => Application.Current.Shutdown());
-            _notifier.ContextMenuStrip = menu;
-            _notifier.MouseMove += _notifier_MouseMove;
-            _notifier.MouseDown += _notifier_MouseDown;
 
             Series = new SeriesCollection
             {
@@ -146,6 +139,8 @@ namespace Forex
             };
             Labels = new List<string>();
             //YFormatter = value => value.ToString("C");
+
+            InitSystemTray();
 
             DataContext = this;
         }
@@ -286,7 +281,26 @@ namespace Forex
 
         #region System Tray
 
-        private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void InitSystemTray()
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+            using (Stream stream = assembly.GetManifestResourceStream("Forex.Assets.logo.ico"))
+            {
+                _notifier = new WinForms.NotifyIcon { Visible = true, Icon = new System.Drawing.Icon(stream) };
+            }
+
+            Closing += MinimizeWindowToSystemTray;
+
+            var menu = new WinForms.ContextMenuStrip();
+            menu.Items.Add("Open", null, (sender, args) => Show());
+            menu.Items.Add("Quit", null, (sender, args) => Application.Current.Shutdown());
+            _notifier.ContextMenuStrip = menu;
+
+            _notifier.MouseMove += _notifier_MouseMove;
+            _notifier.MouseDown += _notifier_MouseDown;
+        }
+
+        private void MinimizeWindowToSystemTray(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Hide();
 
