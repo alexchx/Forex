@@ -121,6 +121,7 @@ namespace Forex
             PreviewMouseLeftButtonUp += MainWindow_PreviewMouseLeftButtonUp;
             DetailsViewTrigger.MouseLeftButtonUp += DetailsViewTrigger_MouseLeftButtonUp;
             Scheduler.Current.SyncUpdated += Current_SyncUpdated;
+            Scheduler.Current.SyncFailed += Current_SyncFailed;
 
             Series = new SeriesCollection
             {
@@ -153,9 +154,16 @@ namespace Forex
             (FindResource("RotateStoryboard") as Storyboard).Begin();
         }
 
-        private async void Current_SyncUpdated(object sender, SyncEventArgs e)
+        private async void Current_SyncUpdated(object sender, SyncUpdatedEventArgs e)
         {
             await FetchDataAsync(1);
+        }
+
+        private void Current_SyncFailed(object sender, SyncFailedEventArgs e)
+        {
+            Message = e.Message;
+
+            NotifyMessage("Forex data sync error", e.Message);
         }
 
         private async Task FetchDataAsync(int maxDays)
@@ -289,39 +297,37 @@ namespace Forex
                 _notifier = new WinForms.NotifyIcon { Visible = true, Icon = new System.Drawing.Icon(stream) };
             }
 
-            Closing += MinimizeWindowToSystemTray;
+            Closing += (sender, e) =>
+            {
+                Hide();
+                e.Cancel = true;
+            };
 
             var menu = new WinForms.ContextMenuStrip();
             menu.Items.Add("Open", null, (sender, args) => Show());
             menu.Items.Add("Quit", null, (sender, args) => Application.Current.Shutdown());
             _notifier.ContextMenuStrip = menu;
 
-            _notifier.MouseMove += _notifier_MouseMove;
-            _notifier.MouseDown += _notifier_MouseDown;
-        }
-
-        private void MinimizeWindowToSystemTray(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            Hide();
-
-            e.Cancel = true;
-        }
-
-        private void _notifier_MouseMove(object sender, WinForms.MouseEventArgs e)
-        {
-            _notifier.Text = $"USD/CNY Rate: {LatestRate}\r\nUpdated By: {LastUpdatedBy?.ToString("yyyy-MM-dd HH:mm:ss")}";
-        }
-
-        private void _notifier_MouseDown(object sender, WinForms.MouseEventArgs e)
-        {
-            switch (e.Button)
+            _notifier.MouseMove += (sender, e) =>
             {
-                case WinForms.MouseButtons.Left:
+                _notifier.Text = $"USD/CNY Rate: {LatestRate}\r\nUpdated By: {LastUpdatedBy?.ToString("yyyy-MM-dd HH:mm:ss")}"
+            };
+            _notifier.MouseDown += (sender, e) =>
+            {
+                if (e.Button == WinForms.MouseButtons.Left)
+                {
                     Show();
-                    break;
-                default:
-                    break;
-            }
+                }
+            };
+
+            _notifier.BalloonTipClicked += (sender, e) => Show();
+        }
+
+        private void NotifyMessage(string title, string message)
+        {
+            _notifier.BalloonTipTitle = title;
+            _notifier.BalloonTipText = message;
+            _notifier.ShowBalloonTip(2000);
         }
 
         #endregion

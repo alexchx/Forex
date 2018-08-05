@@ -36,7 +36,8 @@ namespace Forex.Services
 
         #endregion
 
-        public event EventHandler<SyncEventArgs> SyncUpdated;
+        public event EventHandler<SyncUpdatedEventArgs> SyncUpdated;
+        public event EventHandler<SyncFailedEventArgs> SyncFailed;
 
         public Scheduler()
         {
@@ -91,16 +92,16 @@ namespace Forex.Services
                     {
                         await DbService.SyncRateItemsAsync(items);
 
-                        SyncUpdated?.Invoke(this, new SyncEventArgs { LastUpdate = items.Max(o => o.Time) });
+                        SyncUpdated?.Invoke(this, new SyncUpdatedEventArgs { LastUpdate = items.Max(o => o.Time) });
                     }
 
                     currentDay = currentDay.AddDays(1);
                     lastUpdateTime = null;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                SyncFailed?.Invoke(this, new SyncFailedEventArgs { Message = ex.Message });
             }
             finally
             {
@@ -112,8 +113,13 @@ namespace Forex.Services
         }
     }
 
-    public class SyncEventArgs
+    public class SyncUpdatedEventArgs
     {
         public DateTime LastUpdate { get; set; }
+    }
+
+    public class SyncFailedEventArgs
+    {
+        public string Message { get; set; }
     }
 }

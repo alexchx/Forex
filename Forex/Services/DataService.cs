@@ -111,12 +111,12 @@ namespace Forex.Services
             var matchCount = Regex.Match(html, @"var m_nRecordCount = (\d+);");
             if (!matchCount.Success)
             {
-                throw new Exception();
+                throw new Exception("Failed to detect the record count from the source page");
             }
             var matchPageSize = Regex.Match(html, @"var m_nPageSize = (\d+);");
             if (!matchPageSize.Success)
             {
-                throw new Exception();
+                throw new Exception("Failed to detect the page size from the source page");
             }
 
             return new Result
