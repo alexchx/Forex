@@ -26,7 +26,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <StackPanel x:Name="DetailsViewTrigger" Margin="0 0 0 20" Background="White" ToolTip="View Details">
+            <StackPanel x:Name="DetailsViewTrigger" Margin="0 0 0 20" Background="White" ToolTip="VIEW DETAILS">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <TextBlock FontSize="{StaticResource HeaderFontSize}" Text="USD/CNY" Margin="0 0 50 0"/>
                     <TextBlock FontSize="{StaticResource HeaderFontSize}" Text="{Binding LatestRate}" Foreground="Red"/>

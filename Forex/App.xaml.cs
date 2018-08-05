@@ -51,7 +51,7 @@ namespace Forex
             Exception baseEx = e.Exception.GetBaseException();
 
             // fallback to native message box
-            MessageBox.Show(baseEx.ToString(), "错误", MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBox.Show(baseEx.Message, "错误", MessageBoxButton.OK, MessageBoxImage.Error);
 
             e.Handled = true;
         }
