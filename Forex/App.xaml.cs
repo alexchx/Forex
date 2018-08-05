@@ -1,14 +1,23 @@
 ﻿using Forex.Services;
 using System;
+using System.Threading;
 using System.Windows;
 
 namespace Forex
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
+        Mutex mutex;
+
+        public App()
+        {
+            mutex = new Mutex(true, "Forex", out bool isNew);
+            if (!isNew)
+            {
+                Environment.Exit(0);
+            }
+        }
+
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             DbService.Initialize();
