@@ -168,58 +168,65 @@ namespace Forex
 
         private async Task FetchDataAsync(int maxDays)
         {
-            var lastUpdateTime = await DbService.GetNewestTimeAsync();
-
-            var results = await DbService.GetDailyDetailsAsync(lastUpdateTime);
-
-            PagedRates = results;
-
-            var latestRate = results.Items.OrderByDescending(o => o.Time).FirstOrDefault();
-            if (latestRate != null)
+            try
             {
-                LastUpdatedBy = latestRate.Time;
-                LatestRate = latestRate.Rate;
-            }
-            else
-            {
-                LastUpdatedBy = null;
-                LatestRate = 0;
-            }
+                var lastUpdateTime = await DbService.GetNewestTimeAsync();
 
-            var summaries = (await DbService.GetDailySummaryAsync(maxDays))
-                .OrderBy(o => o.Date)
-                .ToList();
+                var results = await DbService.GetDailyDetailsAsync(lastUpdateTime);
 
-            var latestSummary = summaries.OrderByDescending(o => o.Date).FirstOrDefault();
-            if (latestSummary != null)
-            {
-                LatestMaxRate = latestSummary.MaxRate;
-                LatestMinRate = latestSummary.MinRate;
-            }
-            else
-            {
-                LatestMaxRate = 0;
-                LatestMinRate = 0;
-            }
+                PagedRates = results;
 
-            // merge summaries
-            foreach (var summary in summaries)
-            {
-                var label = summary.Date.ToString("MM-dd");
-                var index = Labels.IndexOf(label);
-
-                if (index == -1)
+                var latestRate = results.Items.OrderByDescending(o => o.Time).FirstOrDefault();
+                if (latestRate != null)
                 {
-                    Series[0].Values.Add(summary.MaxRate);
-                    Series[1].Values.Add(summary.MinRate);
-                    Labels.Add(label);
+                    LastUpdatedBy = latestRate.Time;
+                    LatestRate = latestRate.Rate;
                 }
                 else
                 {
-                    Series[0].Values[index] = summary.MaxRate;
-                    Series[1].Values[index] = summary.MinRate;
-                    Labels[index] = label;
+                    LastUpdatedBy = null;
+                    LatestRate = 0;
                 }
+
+                var summaries = (await DbService.GetDailySummaryAsync(maxDays))
+                    .OrderBy(o => o.Date)
+                    .ToList();
+
+                var latestSummary = summaries.OrderByDescending(o => o.Date).FirstOrDefault();
+                if (latestSummary != null)
+                {
+                    LatestMaxRate = latestSummary.MaxRate;
+                    LatestMinRate = latestSummary.MinRate;
+                }
+                else
+                {
+                    LatestMaxRate = 0;
+                    LatestMinRate = 0;
+                }
+
+                // merge summaries
+                foreach (var summary in summaries)
+                {
+                    var label = summary.Date.ToString("MM-dd");
+                    var index = Labels.IndexOf(label);
+
+                    if (index == -1)
+                    {
+                        Series[0].Values.Add(summary.MaxRate);
+                        Series[1].Values.Add(summary.MinRate);
+                        Labels.Add(label);
+                    }
+                    else
+                    {
+                        Series[0].Values[index] = summary.MaxRate;
+                        Series[1].Values[index] = summary.MinRate;
+                        Labels[index] = label;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                NotifyMessage("Forex data query error", ex.Message);
             }
         }
 
@@ -310,7 +317,7 @@ namespace Forex
 
             _notifier.MouseMove += (sender, e) =>
             {
-                _notifier.Text = $"USD/CNY Rate: {LatestRate}\r\nUpdated By: {LastUpdatedBy?.ToString("yyyy-MM-dd HH:mm:ss")}"
+                _notifier.Text = $"USD/CNY Rate: {LatestRate}\r\nUpdated By: {LastUpdatedBy?.ToString("yyyy-MM-dd HH:mm:ss")}";
             };
             _notifier.MouseDown += (sender, e) =>
             {
