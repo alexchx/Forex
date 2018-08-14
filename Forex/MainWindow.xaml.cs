@@ -323,7 +323,14 @@ namespace Forex
             {
                 if (e.Button == WinForms.MouseButtons.Left)
                 {
-                    Show();
+                    if (IsVisible)
+                    {
+                        Activate();
+                    }
+                    else
+                    {
+                        Show();
+                    }
                 }
             };
 
