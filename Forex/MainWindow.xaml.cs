@@ -230,7 +230,7 @@ namespace Forex
                 // merge summaries
                 foreach (var summary in summaries)
                 {
-                    var label = summary.Date.ToString("MM-dd");
+                    var label = summary.Date.ToString("yyyy-MM-dd");
                     var index = Labels.IndexOf(label);
 
                     if (index == -1)
