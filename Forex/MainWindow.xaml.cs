@@ -113,6 +113,9 @@ namespace Forex
 
         private WinForms.NotifyIcon _notifier;
 
+        private double _todayMinRate;
+        private double _todayMaxRate;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -197,6 +200,26 @@ namespace Forex
                 {
                     LatestMaxRate = latestSummary.MaxRate;
                     LatestMinRate = latestSummary.MinRate;
+
+                    if (LatestMinRate < _todayMinRate)
+                    {
+                        if (_todayMinRate != 0)
+                        {
+                            NotifyMessage(null, $"Min exchange rate changed: {LatestMinRate}");
+                        }
+
+                        _todayMinRate = LatestMinRate;
+                    }
+
+                    if (LatestMaxRate > _todayMaxRate)
+                    {
+                        if (_todayMaxRate != 0)
+                        {
+                            NotifyMessage(null, $"Max exchange rate changed: {LatestMaxRate}");
+                        }
+
+                        _todayMaxRate = LatestMaxRate;
+                    }
                 }
                 else
                 {

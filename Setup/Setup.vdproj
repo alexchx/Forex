@@ -52,13 +52,13 @@
         "Entry"
         {
         "MsmKey" = "8:_6BD072F154682AE170E5592C7B13CBED"
-        "OwnerKey" = "8:_2ADC01240FD562F8FBA3350CBCB3E28B"
+        "OwnerKey" = "8:_A9B24DB7AD0FEBA2F47935A4B2460E4E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_6BD072F154682AE170E5592C7B13CBED"
-        "OwnerKey" = "8:_A9B24DB7AD0FEBA2F47935A4B2460E4E"
+        "OwnerKey" = "8:_2ADC01240FD562F8FBA3350CBCB3E28B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -82,13 +82,13 @@
         "Entry"
         {
         "MsmKey" = "8:_952CDA8FB0F4B24D469343276A8D1620"
-        "OwnerKey" = "8:_FDA3D7D7AA2713CF688DE393F6C2F411"
+        "OwnerKey" = "8:_2ADC01240FD562F8FBA3350CBCB3E28B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_952CDA8FB0F4B24D469343276A8D1620"
-        "OwnerKey" = "8:_2ADC01240FD562F8FBA3350CBCB3E28B"
+        "OwnerKey" = "8:_FDA3D7D7AA2713CF688DE393F6C2F411"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -136,49 +136,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_ED83C4052DABF3A7AB0B70A0F89890FD"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_952CDA8FB0F4B24D469343276A8D1620"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_FDA3D7D7AA2713CF688DE393F6C2F411"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_2B9492B81C0C4239DCFEEC10DB2E6824"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_6C5287791A65305A222C577992DE9FBD"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_33070156E424031215AA463EE87D0B6C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_CA2EC5411FA6AC92632EA77316FB83FD"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_6BD072F154682AE170E5592C7B13CBED"
+        "OwnerKey" = "8:_A9B24DB7AD0FEBA2F47935A4B2460E4E"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -190,7 +148,49 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_A9B24DB7AD0FEBA2F47935A4B2460E4E"
+        "OwnerKey" = "8:_6BD072F154682AE170E5592C7B13CBED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_CA2EC5411FA6AC92632EA77316FB83FD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_33070156E424031215AA463EE87D0B6C"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_6C5287791A65305A222C577992DE9FBD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_2B9492B81C0C4239DCFEEC10DB2E6824"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_FDA3D7D7AA2713CF688DE393F6C2F411"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_952CDA8FB0F4B24D469343276A8D1620"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_ED83C4052DABF3A7AB0B70A0F89890FD"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -677,15 +677,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Forex"
-        "ProductCode" = "8:{F2A1E5E1-AAAB-4E56-84C0-3D5C5A1783DC}"
-        "PackageCode" = "8:{911CCFB3-4F13-45B2-99BB-39D5B6590068}"
+        "ProductCode" = "8:{6F869AD4-7ADB-4233-8AB9-CEEB53C4EC2D}"
+        "PackageCode" = "8:{4AF1E2CC-1E42-4D9C-94FF-690465C81677}"
         "UpgradeCode" = "8:{53FBEEE8-3F31-45FA-9C30-589D66915E22}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.2"
+        "ProductVersion" = "8:1.0.3"
         "Manufacturer" = "8:Alex Chen"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

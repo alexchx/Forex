@@ -10,3 +10,5 @@
 /Forex/obj/Release
 /Setup/Release
 /.vs/Forex/DesignTimeBuild/.dtbcache
+/Setup/Debug
+*.user
