@@ -249,6 +249,8 @@ namespace Forex
             }
             catch (Exception ex)
             {
+                Logger.LogError(ex, "Forex data query error");
+
                 NotifyMessage("Forex data query error", ex.Message);
             }
         }

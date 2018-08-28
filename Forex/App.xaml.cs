@@ -50,6 +50,8 @@ namespace Forex
         {
             Exception baseEx = e.Exception.GetBaseException();
 
+            Logger.LogError(baseEx, "Global error");
+
             // fallback to native message box
             MessageBox.Show(baseEx.Message, "错误", MessageBoxButton.OK, MessageBoxImage.Error);
 

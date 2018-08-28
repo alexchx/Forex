@@ -101,6 +101,8 @@ namespace Forex.Services
             }
             catch (Exception ex)
             {
+                Logger.LogError(ex, "Forex data sync error");
+
                 SyncFailed?.Invoke(this, new SyncFailedEventArgs { Message = ex.Message });
             }
             finally
